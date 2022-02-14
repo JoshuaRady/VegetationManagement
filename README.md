@@ -8,16 +8,16 @@ The Vegetation Management Module (VM) is a research tool that allows the simulat
 
 ## Motivation:
 
-The Selective Logging Module developed by Maoyi Huang et al. (Huang, Xu, et al. 2019) already allows for the simulation of logging within FATES, and has been a significant boon the FATES community.  However there are several important limitations to what the logging module can do:
+The Selective Logging Module developed by Maoyi Huang et al. (Huang, Xu, et al. 2019) allows for the simulation of logging within FATES, and has been a significant boon the FATES community.  However there are several important limitations to what the logging module can do:
 
-- The only management simulated is harvest and the only form of harvest is a bole harvest.
+- The only management simulated is logging and the only form of logging is a bole harvest.
 - Planting and other intermediate operations are not implemented.
 - Wood is harvested from all woody PFTs (trees and shrubs) in the canopy layer.  Harvesting from specific PFTs is not an option.
-- Only woody PFTs can be harvested. Understory species can not be harvested.
+- Only woody PFTs can be harvested. Understory species can not be harvested or removed.
 - Only one type of logging events can be scheduled per simulation. This event may occur on a periodic basis (monthly, daily, etc.) or on one specific date.  Events cannot occur on an arbitrary sequence of dates or when certain conditions are met.
 - Wood is harvested from all grid cells and all patches within them.  Specific locations or patches cannot be targeted.
 - Logging occurs as a fraction of the number of plants present.  Removals by biomass are not possible.
-- Harvest can be limited to plants over a given DBH but no other size criteria are provided for harvest.  This prevents the simulation of mangement that targets small or mid-sized trees.
+- Harvest can be limited to plants over a given DBH but no other size criteria are available.  This prevents the simulation of mangement that targets small or mid-sized trees.
 
 The VM Module is a new module that was designed to address these issues while allowing compatibility with the logging module.  
 
@@ -25,10 +25,10 @@ The VM Module is a new module that was designed to address these issues while al
 
 ### Conceptual Model:
 
-We chose to develop VM around a hierarchical conceptual model that bridges (abstracts) real-world management activities with the model-world in a logical way ((Diagram)). At the lowest level the module provides routines that handle fundamental processes of mortality and generation at the model level.  These routines are used to build representations of specific real-world management activities, which we call *operations*, at the next higher level of abstraction.  These operations can be combined in a sequence to represent a full *management cycle*.  Different management modalities we term *Management Regimes*.  You can build new management regimes for your system of interest without any code if the operations already exist.  If you need a new management operation you can code them without needing to know how to handle tricky things like mass conservation, fluxes, and reporting in the model.
+We chose to develop VM around a hierarchical conceptual model that bridges (abstracts) real-world management activities with the model-world in a logical way ((Diagram)). At the lowest level the module provides routines that handle fundamental processes of mortality and recruitment (generation?) at the model level.  These routines are used to build representations of specific real-world management activities, which we call *operations*, at the next higher level of abstraction.  These operations can be combined in a sequence to represent full *management cycle*.  Different management modalities we term *Management Regimes*.  You can build new management regimes for your system of interest without any code if the operations already exist.  If you need a new management operation you can code them without needing to know how to handle tricky things (low level things) like mass conservation, fluxes, and reporting in the model.
 ...without needing to know all the details of how the FATES model deals with tricky...
 
-While the initial development has focused on forest management the VM Module can be used to modify plant or remove any type of vegetation.
+While the initial development has focused on forest management the VM Module can be used to modify plants or remove any type of vegetation.
 
 Core Concepts:
 Operations
@@ -40,14 +40,9 @@ The VM Module refactors some of the code in FATES to better isolate code pertain
 
 ### Compatibility:
 
-It you have used the logging module in the past you can continue to use it with VM installed and you will get identical results.  However, VM can do most of what the Selective Logging Module can do but with greater flexibility.  So while you can mix Logging Module and VM Events this is really intended to allow existing cases to work while you try out VM.
+It you have used the logging module in the past you can continue to use it with VM installed and you will get identical results.  However, VM can do most of what the Selective Logging Module can do but with greater flexibility.  So while you can mix Logging Module and VM Events this is mainly intended to allow existing cases to continue to work [while you try out or transition to VM]. See the section on events for more details [LINK!].
 
-<!--- This was too many layers:
-## Versions:
-
-### Host Land Model
-
-#### CTSM -->
+<!--- Should we add notes here about the lack of infrastructure mortality. -->
 
 ## Host Land Model Support
 
@@ -187,7 +182,7 @@ In `user_nl_clm` add the following lines:
 
 ## Using the Vegetation Management Module
 
-The Quick Start Section gives an example of how to run a simulation with the Vegetation Management Module.  Here we explain the process in more detail.  You will need to know how to configure, build, and run a CTSM-FATES simulation so if you haven't done that consult some of the excellent resources that can get you going with that. [ADD REFS]
+The Quick Start Section gives an example of how to run a simulation with the Vegetation Management Module.  Here we explain the process in more detail.  You will need to know how to configure, build, and run a CTSM-FATES simulation. If you haven't learned that yet consult some of the excellent resources that can get you going with CTSM. [ADD REFS]
 
 Start as you would with any simulation.  Figure out what you want to simulate...
 
@@ -195,34 +190,38 @@ If you are comparing to data...
 
 As you design your simulation think about what management activities you want to simulate, where, when, and under what conditions.  Break down the management into its component steps.  For example if you want to simulate a 
 
-Set up your simulation as you normall would.
+Set up your simulation as you normally would.
 
 
 
 ### Operations and Events:
 
 VM abstracts management processes in much the way a manager would.
-VM represents management as specific activities 
+VM represents management as specific activities ...
 
 Operations represent specific real-world human interventions into the behavior of an ecosystem, such as planting or timber harvest. Events are individual occurrences of an operation, e.g. planting tulips in Copenhagen in September 1991. You tell FATES what management to simulate by specifying one or more events in a driver file.
 
 <!--- This section covers material documented in great detail in the code. Expect that the code is the primary documentation and will reflect changes that may not yet be documented here. -->
 ### VM Prescribed Event Driver File:
 
-The Vegetation Prescribed Management Event Driver File uses a custom text format designed to be human readable and easily written by hand.
- Since the language of FATES is Fortran we borrow a few conventions from that language.
+The Vegetation Management Prescribed Event Driver File uses a custom text format designed to be human readable and easily written by hand (and not be that hard to automate). Since the language of FATES is Fortran we borrow a few conventions from that language.
 
-#### General File Structure:
+<!--- Basics? -->
 
-There should be at least two lines.  The first (non-comment) line should be a header line that specifies the field names.  The following lines are event lines.
+#### General File Structure at a Glance:
 
-#### File Format [Where does this go?  Drop the header?]
-The file should be UTF-8 with the extension `.txt` and UNIX line endings. Other text variants may work but have not been tested.
+There should be at least two lines.  The first (non-comment) line should be a *header line* that specifies the field names (see example below).  The lines that follow are *event lines*.
 
 Minimal Generic Example:
 
 	Date        Lat  Lon  EventSpec
 	YYYY-MM-DD  X.X  Y.Y  do_something(x = 3.0, y = 2, z = 13.1)
+
+<!--- Details? -->
+
+#### File Format:
+
+The file should be UTF-8 text with the extension `.txt` and UNIX line endings. Other text variants may work but have not been tested.
 
 #### Blank lines:
 
@@ -236,7 +235,7 @@ Any content following a '!' on a line is ignored.
 
 Ideally the header will occur as the first line of *content*.  Comment lines describing the file (e.g. creator, date, project, etc) may precede it (a good idea) but all events should follow it.
 
-The header line is primarily for readability and we do minimal checking of it, so most typos will not cause problems. The field order is fixed and changing the order in the header will not overide that.
+The header line is primarily for readability and we do minimal checking of it, so most typos will not cause problems. The field order is fixed and changing the order of headings will not overide that.
 
 #### Field Delimiters:
 
@@ -292,7 +291,6 @@ Right:
 
 	Lat   Lon
 	38.0  281.5
-
 </font>
 
 <font color="red">
@@ -350,7 +348,7 @@ Some arguments can take arrays of values.  These are specified using square brac
 Spaces are allowed between elements in event specifications for readability but are not required.  Other whitespace should be avoided. The style suggestion is to include spaces between arguments and name values pairs but not next to parentheses.
 
 	Harder to read:  do_something ( dbh_min=3.0,dbh_max=55.5,z=13.1 )
-	Earlier to read: do_something(dbh_min = 3.0, dbh_max = 55.5, z = 13.1)
+	Easier to read:  do_something(dbh_min = 3.0, dbh_max = 55.5, z = 13.1)
 
 ###### Case:
 Event and argument names are case sensitive.
