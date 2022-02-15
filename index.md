@@ -1,5 +1,7 @@
+---
 layout: page
-title: "Home"
+title: Home
+---
 
 # Temporary
 
