@@ -1,5 +1,4 @@
 ---
-title: Override
 ---
 
 Content before heading.
