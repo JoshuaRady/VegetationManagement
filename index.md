@@ -1,7 +1,7 @@
 ---
 ---
 
-Content before heading.
+<!-- Content before heading. -->
 
 # Temporary
 
