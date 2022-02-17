@@ -18,7 +18,7 @@ author:
   location: "Virginia, USA"
   links:
     - label: "GitHub"
-      icon: "fa-brands fa-github-alt"
+      icon: "fab fa-fw fa-github-alt"
       url: "https://github.com/JoshuaRady/"
 
 # Disable feed:
