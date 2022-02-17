@@ -1,3 +1,4 @@
-theme: jekyll-theme-cayman
+# theme: jekyll-theme-cayman
+remote_theme: mmistakes/minimal-mistakes
 title: The Vegetation Management Module
 description: Documentation for the Vegetation Management Module for FATES.
