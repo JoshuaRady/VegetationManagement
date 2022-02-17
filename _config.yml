@@ -1,8 +1,26 @@
 # theme: jekyll-theme-cayman
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 title: The Vegetation Management Module
-description: Documentation for the Vegetation Management Module for FATES.
+# For default themes:
+# description: Documentation for the Vegetation Management Module for FATES.
+subtitle: "Documentation for the Vegetation Management Module for FATES."
 
-# Plugins
+# Plugins:
 gems:
   - jekyll-include-cache
+
+# Bio sidebar:
+# Icons from https://fontawesome.com
+author:
+  name: "Joshua Rady"
+  avatar: "https://github.com/JoshuaRady.png"
+  bio: "Dreams of trees..."
+  location: "Virginia, USA"
+  links:
+    - label: "GitHub"
+      icon: "fa-brands fa-github-alt"
+      url: "https://github.com/JoshuaRady/"
+
+# Disable feed:
+atom_feed:
+  hide: true
