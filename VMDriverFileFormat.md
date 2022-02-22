@@ -3,15 +3,14 @@ layout: single
 title: VM Driver File Format
 author_profile: true
 ---
-
 <!--- This section covers material documented in great detail in the code. Expect that the code is the primary documentation and will reflect changes that may not yet be documented here. -->
-### VM Prescribed Event Driver File:
+## VM Prescribed Event Driver File:
 
 The Vegetation Management Prescribed Event Driver File uses a custom text format designed to be human readable and easily written by hand (and not be that hard to automate). Since the language of FATES is Fortran we borrow a few conventions from that language.
 
 <!--- Basics? -->
 
-#### General File Structure at a Glance:
+### General File Structure at a Glance:
 
 There should be at least two lines.  The first (non-comment) line should be a *header line* that specifies the field names (see example below).  The lines that follow are *event lines*.
 
@@ -22,39 +21,39 @@ Minimal Generic Example:
 
 <!--- Details? -->
 
-#### File Format:
+### File Format:
 
 The file should be UTF-8 text with the extension `.txt` and UNIX line endings. Other text variants may work but have not been tested.
 
-#### Blank lines:
+### Blank lines:
 
 Blank lines are ignored and can occur anywhere in the file.
 
-#### Comments:
+### Comments:
 
 Any content following a '!' on a line is ignored.
 
-#### Header Line:
+### Header Line:
 
 Ideally the header will occur as the first line of *content*.  Comment lines describing the file (e.g. creator, date, project, etc) may precede it (a good idea) but all events should follow it.
 
 The header line is primarily for readability and we do minimal checking of it, so most typos will not cause problems. The field order is fixed and changing the order of headings will not overide that.
 
-#### Field Delimiters:
+### Field Delimiters:
 
 The header columns and event fields are delimited by one or more spaces. For flexibility column widths are not specified. While aligning columns for readability is encouraged it is not required. Any number of spaces between fields will be accepted.
 
 Tabs or other whitespace may cause weirdness. Do not use them.
 
-#### Event Lines:
+### Event Lines:
 
 Each event is placed on its own line, preferably in chronological order.
 
-##### Event Field Order:
+#### Event Field Order:
 
 The field order is the **date** of the event, the **latitude** and **longitude** (in model grid units) where the event should occur, followed by an **event specification**, which is written like a Fortran function call (see generic examples above and specific ones below).
 
-##### Date Field
+#### Date Field
 
 Dates should follow the following rules
 
@@ -85,7 +84,7 @@ Wildcard Examples:
 	2018-**-15    = repeat event on the 15th of every month in 2018
 	20\*5-1\*-3\* = Nov 30 and Dec 30 & 31 in 2005, 2015, 2025 etc. (Weird but would work.)
 
-##### Coordinate Fields
+#### Coordinate Fields
 
 The geographic coordinates where an event should occur should be specified as decimal values in model grid style (latitude -90 - 90, logitude 0 - 360, with no cardinal directions).
 
@@ -119,7 +118,7 @@ Regions of different events can overlap but date rules still apply.  Only one ev
 
 (Combining single values for one coordinate and a range or -999 for the other should work and will produce a stripe. Weird.)
 
-##### Event Specifications
+#### Event Specifications
 
 The event specification tells VM which operation to perform.  It is formated like a Fortran function call.
 
@@ -129,7 +128,7 @@ Examples:
 
 *The full list of events and their interfaces (arguments) are currently only available in the code.*
 
-###### Event Type or Name String:
+##### Event Type or Name String:
 
 The event specification starts with an event name (i.e. the "function name").
 
@@ -137,7 +136,7 @@ The event specification starts with an event name (i.e. the "function name").
     ! subroutines that execute the event.  These subroutines declare their interface: the arguments
     ! and values that they take.
 
-###### Arguments:
+##### Arguments:
 
 Arguments follow the event name, enclosed in parentheses, and separated by commas.
 
@@ -146,21 +145,21 @@ The order of arguments does not matter but it is best to keep it same as the ord
 
 Some arguments can take arrays of values.  These are specified using square brackets and commas, i.e. name = [value1, value2].  Single values will be accepted for array arguments.
 
-###### White Space:
+##### White Space:
 
 Spaces are allowed between elements in event specifications for readability but are not required.  Other whitespace should be avoided. The style suggestion is to include spaces between arguments and name values pairs but not next to parentheses.
 
 	Harder to read:  do_something ( dbh_min=3.0,dbh_max=55.5,z=13.1 )
 	Easier to read:  do_something(dbh_min = 3.0, dbh_max = 55.5, z = 13.1)
 
-###### Case:
+##### Case:
 Event and argument names are case sensitive.
 
-### Using Events?????
+## Using Events?????
 
 VM harvest events can be specified with height...
 
-#### Conditional Events:
+### Conditional Events:
 
 In version 1.0 events affect all patches of a site where they occur.  Starting in version 1.1 there are conditional variants of some (but not all) operations.  For example `replant()` is a conditional version of `plant()` that only plants when a patch is bare.
 
@@ -173,7 +172,7 @@ When performing simulations with Pure PPA there is generally only one patch per 
 
 Some events even in version 1.0 can exhibit conditional behavior indirectly.  For example the harvest routines all allow you to specify range of trees sizes to remove.  If there are no matching trees the event won't occur.  However, for some more complicated operations (clearcut) the conditionals are required.
 
-#### Detailed Example Driver File:
+### Detailed Example Driver File:
 
 ```
 ! Example_VM_Driver_File.txt

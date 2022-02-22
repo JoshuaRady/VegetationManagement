@@ -3,18 +3,15 @@ layout: single
 title: Versions and Features
 author_profile: true
 ---
-
-<!-- # Temporary -->
-
 ## Host Land Model Support
 
 ### CTSM:
 
-The Vegetation Management Module requires a special version of CTSM that adds a couple of namelist items. The release version is the Vegetation\_Management branch (CHANGE) of our [CTSM fork](https://github.com/JoshuaRady/ctsm/tree/Vegetation_Management). See the [installation section](#Installation) for more installation help.
+The Vegetation Management Module requires a special version of CTSM that adds a couple of namelist items. The release version is the Vegetation\_Management branch (CHANGE) of our [CTSM fork](https://github.com/JoshuaRady/ctsm/tree/Vegetation_Management). See the [installation section](/Installation#Installation) for more installation help.
 
-The current release version based off CTSM ctsm1.0.dev113_fates_api14.2.0.n01-2-g132dae57 (Confirm has and add tag?)
 The current release version for VM 1.0 has the following properties:
 <!--- The following table requires an extension not present in BBEdit but renders properly on GitHub. -->
+
 | Property      | Value                                            |
 | ------------- | ------------------------------------------------ |
 | Base CTSM Tag | ctsm1.0.dev113\_fates\_api14.2.0.n01-2-g132dae57 |

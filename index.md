@@ -1,4 +1,5 @@
 ---
+layout: splash
 title: Temporary
 author_profile: true
 ---

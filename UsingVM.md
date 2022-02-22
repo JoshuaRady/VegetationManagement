@@ -1,14 +1,10 @@
 ---
 layout: single
-title: Using VM
+title: Using the Vegetation Management Module
 author_profile: true
 ---
 
-<!-- # Temporary -->
-
-## Using the Vegetation Management Module
-
-The Quick Start Section gives an example of how to run a simulation with the Vegetation Management Module.  Here we explain the process in more detail.  You will need to know how to configure, build, and run a CTSM-FATES simulation. If you haven't learned that yet consult some of the excellent resources that can get you going with CTSM. [ADD REFS]
+The [Quick Start Section](/Installation/) gives an example of how to run a simulation with the Vegetation Management Module.  Here we explain the process in more detail.  You will need to know how to configure, build, and run a CTSM-FATES simulation. If you haven't learned that yet consult some of the excellent resources that can get you going with CTSM. [ADD REFS]
 
 Start as you would with any simulation.  Figure out what you want to simulate...
 
