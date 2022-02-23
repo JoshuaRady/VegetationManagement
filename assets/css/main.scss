@@ -1,0 +1,24 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+/* Overide some Minimal Mistakes CSS. */
+
+/* Doesn't work:
+hr {
+  display: block;
+  margin: 1em 0;
+  border: 0;
+  border-top: 1px solid #67923D;
+}*/
+
+/* To change the horizontal rules following h2s.  Also changes a few other things: */
+$border-color:  #67923D;
+
+/* Original content follows: */
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+

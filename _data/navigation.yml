@@ -5,7 +5,8 @@ main:
     url: /VersionsAndFeatures/
   - title: "Installation"
     url: /Installation/
-  - title: "Using VM"
-    url: /UsingVM/
   - title: "VM Driver File Format"
     url: /VMDriverFileFormat/
+# Not ready yet:
+#  - title: "Using VM"
+#    url: /UsingVM/

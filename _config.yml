@@ -1,18 +1,24 @@
 # theme: jekyll-theme-cayman
 remote_theme: "mmistakes/minimal-mistakes@4.24.0"
-title: The Vegetation Management Module
+title: "The Vegetation Management Module"
 # For default themes:
 # description: Documentation for the Vegetation Management Module for FATES.
 subtitle: "Documentation for the Vegetation Management Module for FATES."
 
+#For copyright:
+name: "Joshua M. Rady"
+
 # Plugins:
-gems:
+plugins:
   - jekyll-include-cache
+
+# Masthead Logo:
+logo: "/assets/images/VM_Spring2b_88x88.png"
 
 # Bio sidebar:
 # Icons from https://fontawesome.com
 author:
-  name: "Joshua Rady"
+  name: "Joshua M. Rady"
   avatar: "https://github.com/JoshuaRady.png"
   bio: "Dreams of trees..."
   location: "Virginia, USA"

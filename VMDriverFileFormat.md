@@ -1,55 +1,55 @@
 ---
 layout: single
+classes: wide
 title: VM Driver File Format
 author_profile: true
+toc: true
 ---
-<!--- This section covers material documented in great detail in the code. Expect that the code is the primary documentation and will reflect changes that may not yet be documented here. -->
-## VM Prescribed Event Driver File:
 
-The Vegetation Management Prescribed Event Driver File uses a custom text format designed to be human readable and easily written by hand (and not be that hard to automate). Since the language of FATES is Fortran we borrow a few conventions from that language.
+*This section covers material documented in great detail in the code. Expect that, for now, the code is the primary documentation and will recent reflect changes that may not yet be documented here.*
 
-<!--- Basics? -->
+## VM Prescribed Event Driver File
 
-### General File Structure at a Glance:
+The *Vegetation Management Prescribed Event Driver File* uses a custom text format designed to be human readable and easily written by hand (and is not that hard to automate). Since the language of FATES is Fortran we borrow a some conventions from that language.
+
+## Basic File Structure at a Glance
 
 There should be at least two lines.  The first (non-comment) line should be a *header line* that specifies the field names (see example below).  The lines that follow are *event lines*.
 
-Minimal Generic Example:
+__Minimal Generic Example:__
 
 	Date        Lat  Lon  EventSpec
 	YYYY-MM-DD  X.X  Y.Y  do_something(x = 3.0, y = 2, z = 13.1)
 
-<!--- Details? -->
-
-### File Format:
+## File Format Details
 
 The file should be UTF-8 text with the extension `.txt` and UNIX line endings. Other text variants may work but have not been tested.
 
-### Blank lines:
+### Blank lines
 
 Blank lines are ignored and can occur anywhere in the file.
 
-### Comments:
+### Comments
 
-Any content following a '!' on a line is ignored.
+Any content following a '!' on a line is ignored (like Fortran).
 
-### Header Line:
+### Header Line
 
 Ideally the header will occur as the first line of *content*.  Comment lines describing the file (e.g. creator, date, project, etc) may precede it (a good idea) but all events should follow it.
 
 The header line is primarily for readability and we do minimal checking of it, so most typos will not cause problems. The field order is fixed and changing the order of headings will not overide that.
 
-### Field Delimiters:
+### Field Delimiters
 
 The header columns and event fields are delimited by one or more spaces. For flexibility column widths are not specified. While aligning columns for readability is encouraged it is not required. Any number of spaces between fields will be accepted.
 
 Tabs or other whitespace may cause weirdness. Do not use them.
 
-### Event Lines:
+### Event Lines
 
 Each event is placed on its own line, preferably in chronological order.
 
-#### Event Field Order:
+#### Event Field Order
 
 The field order is the **date** of the event, the **latitude** and **longitude** (in model grid units) where the event should occur, followed by an **event specification**, which is written like a Fortran function call (see generic examples above and specific ones below).
 
@@ -67,7 +67,7 @@ Dates should follow the following rules
 - Thousands separator:
 	- No commas or periods to separate 1000s in years are allowed.
 
-Valid Examples:
+__Valid Examples:__
 
 	YYYY-MM-DD
 	YYYY/MM/DD
@@ -78,7 +78,7 @@ Valid Examples:
 
 Starting in version 1.1 dates may now include the wildcard character '\*'. Any position containing \* will match any value in that position, allowing a repeating event with a single event specification.
 
-Wildcard Examples:
+__Wildcard Examples:__
 
 	****-01-01    = repeat event every year on the first of January
 	2018-**-15    = repeat event on the 15th of every month in 2018
@@ -90,17 +90,17 @@ The geographic coordinates where an event should occur should be specified as de
 
 <font color="green">
 Right:
+</font>
 
 	Lat   Lon
 	38.0  281.5
-</font>
 
 <font color="red">
 Wrong:
+</font>
 
 	Lat        Lon
 	38°1′48″N  78°28′44″W
-</font>
 
 FATES is not privy to the boundaries of grid cells so single coordinates will only match when they are 'close' to the center of a grid cell.
 
@@ -108,7 +108,7 @@ Passing the special value -999 for both latitude and longitude specifies 'everyw
 
 Starting in version 1.1 coordinates may be passed either as single values, specifying a point or grid cell, or a range, specifying a rectangular region, in Fortran 2003 array format, i.e. with square brackets and values separated by a colon.
 
-Format Examples:
+__Format Examples:__
 
 	38.0             Proper syntax for a single value.
 	[33.5:42.5]      Proper syntax and style for a range.
@@ -122,21 +122,17 @@ Regions of different events can overlap but date rules still apply.  Only one ev
 
 The event specification tells VM which operation to perform.  It is formated like a Fortran function call.
 
-Examples:
+__Examples:__
 
 	event_name(arg1 = val1, arg2 = [val2.1, val2.2, val2.3], arg3 = val3)
 
 *The full list of events and their interfaces (arguments) are currently only available in the code.*
 
-##### Event Type or Name String:
+##### Event Type or Name String
 
-The event specification starts with an event name (i.e. the "function name").
+The event specification starts with an event name (i.e. the "function name").  This event name must match an existing event type.  Event specifications map to site level subroutines that execute the event.  These subroutines in the code declare their interface: the arguments and values that they take.
 
-    !   This event name must match an existing event type.  Event specifications map to site level
-    ! subroutines that execute the event.  These subroutines declare their interface: the arguments
-    ! and values that they take.
-
-##### Arguments:
+##### Arguments
 
 Arguments follow the event name, enclosed in parentheses, and separated by commas.
 
@@ -145,21 +141,23 @@ The order of arguments does not matter but it is best to keep it same as the ord
 
 Some arguments can take arrays of values.  These are specified using square brackets and commas, i.e. name = [value1, value2].  Single values will be accepted for array arguments.
 
-##### White Space:
+##### White Space
 
 Spaces are allowed between elements in event specifications for readability but are not required.  Other whitespace should be avoided. The style suggestion is to include spaces between arguments and name values pairs but not next to parentheses.
 
 	Harder to read:  do_something ( dbh_min=3.0,dbh_max=55.5,z=13.1 )
 	Easier to read:  do_something(dbh_min = 3.0, dbh_max = 55.5, z = 13.1)
 
-##### Case:
+##### Case
 Event and argument names are case sensitive.
+
+<!-- The following still needs a lot of work:
 
 ## Using Events?????
 
 VM harvest events can be specified with height...
 
-### Conditional Events:
+### Conditional Events
 
 In version 1.0 events affect all patches of a site where they occur.  Starting in version 1.1 there are conditional variants of some (but not all) operations.  For example `replant()` is a conditional version of `plant()` that only plants when a patch is bare.
 
@@ -191,3 +189,6 @@ Date        Latitude  Longitude EventSpec
 ...
 
 ```
+
+-->
+
