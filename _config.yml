@@ -3,7 +3,7 @@ remote_theme: "mmistakes/minimal-mistakes@4.24.0"
 title: "The Vegetation Management Module"
 # For default themes:
 # description: Documentation for the Vegetation Management Module for FATES.
-subtitle: "Documentation for the Vegetation Management Module for FATES."
+subtitle: "Documentation & Examples for the FATES VM Module"
 
 #For copyright:
 name: "Joshua M. Rady"
