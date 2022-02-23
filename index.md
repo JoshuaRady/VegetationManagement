@@ -31,7 +31,7 @@ The Selective Logging Module developed by Maoyi Huang et al. (Huang, Xu, et al. 
 
 The VM Module is a new module that was designed to address these issues while allowing compatibility with the Selective Logging Module.
 
-## Conceptual Model:
+## Conceptual Model
 
 We chose to develop VM around a hierarchical conceptual model that abstracts real-world management activities within the model-world in a logical way. At the lowest level the module provides routines that handle fundamental processes of mortality and recruitment at the model level.  These routines are used to build representations of specific real-world management activities, which we call ***operations***, at the next higher level of abstraction.  These operations can be combined in a sequence to represent full ***management cycles***.  Different management modalities we term ***Management Regimes***.
 
@@ -41,13 +41,13 @@ You can build new management regimes for your system of interest without any cod
 
 While the initial development of VM has focused on forest management the VM Module can be used to modify any type of simulated vegetation.
 
-### Modularity:
+### Modularity
 
 The VM Module refactors some of the code in FATES to better isolate code pertaining to management, including the logging module, from the rest of code base.  The goal was to limit the need for other FATES modules to be aware of management processes and assumptions.  This reduces dependancies and improves expansibility.
 
 <!--  Diagram  goes here -->
 
-### Compatibility:
+### Compatibility
 
 It you have used the logging module in the past you can continue to use it with VM installed and you will get identical results.  While you can mix Logging Module and VM Events this is mainly intended to allow existing cases to continue to work.  VM can do most of what the Selective Logging Module can do but with greater flexibility. See the section on events for more details.
 <!-- Add link to events section! -->
