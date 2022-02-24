@@ -4,7 +4,7 @@ title: Using the Vegetation Management Module
 author_profile: true
 ---
 
-*This page is incomplete.  Please check back later.*
+<span class=disclaimer>This page is under construction.  Please check back later.</span>
 
 The [Quick Start Section](/Installation/) gives an example of how to run a simulation with the Vegetation Management Module.  Here we explain the process in more detail.  
 

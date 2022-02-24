@@ -30,3 +30,10 @@ author:
 # Disable feed:
 atom_feed:
   hide: true
+
+# Google Analytics:
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-6FT5YFHGX4"
+    anonymize_ip: false

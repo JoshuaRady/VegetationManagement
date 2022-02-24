@@ -4,11 +4,11 @@ title: The Vegetation Management Module
 author_profile: true
 header:
   image: /assets/images/Misty_VM_Banner.jpg
-  image_description: "Mist in a clearcut field"
+  image_description: "A misty morning in a clearcut."
 ---
 The Vegetation Management Module (VM) is a research tool that allows the simulation of realistic vegetation management activities within the [Functionally Assembled Terrestrial Ecosystem Simulator (FATES)](https://github.com/NGEET/fates).
 
-<span style="color: darkred; font-style: italic">This documentation is a work in progress.  The Vegetation Management Module is under rapid development.  Not everything may be documented fully and not everything may be completely accurate. Please bear with us.</span>
+<span class=disclaimer>This documentation is a work in progress.  The Vegetation Management Module is under active development.  Not everything is fully documented yet and not everything may accurately reflect the most recent changes to the code. Please bear with us.</span>
 
 ## In Brief
 

@@ -2,17 +2,15 @@
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
-/* Overide some Minimal Mistakes CSS. */
+/* Add and overide some Minimal Mistakes CSS: */
 
-/* Doesn't work:
-hr {
-  display: block;
-  margin: 1em 0;
-  border: 0;
-  border-top: 1px solid #67923D;
-}*/
+/* For places where the documentation is not quite finished. */
+.disclaimer {
+	color: darkred;
+	font-style: italic
+}
 
-/* To change the horizontal rules following h2s.  Also changes a few other things: */
+/* This was mainly to change the horizontal rules following h2s but it also changes the accent color in few other places, which looks pretty nice: */
 $border-color:  #67923D;
 
 /* Original content follows: */
@@ -21,4 +19,3 @@ $border-color:  #67923D;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
-

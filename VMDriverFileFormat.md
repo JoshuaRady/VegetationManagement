@@ -6,7 +6,7 @@ author_profile: true
 toc: true
 ---
 
-*This section covers material documented in great detail in the code. Expect that, for now, the code is the primary documentation and will recent reflect changes that may not yet be documented here.*
+<span class=disclaimer>This section covers material documented in great detail in the code. Expect that, for now, the code is the primary documentation and will recent reflect changes that may not yet be documented here.</span>
 
 ## VM Prescribed Event Driver File
 

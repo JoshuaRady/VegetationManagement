@@ -67,7 +67,7 @@ Well done, you have completed installation of CTSM-FATES with the Vegetation Man
 
 ## Setting up a Simulation: Quick Start
 
-*This section is incomplete.  Please check back later.*
+<span class=disclaimer>This section is incomplete.  Please check back later.</span>
 
 Here we will run a quick example simulation that shows the Vegetation Management Module in work.
 
@@ -106,7 +106,7 @@ $ ./xmlchange CLM_FORCE_COLDSTART=on
 
 In a directory you like to store input files for your cases create a file named `VMDF_QuickStart.txt` (the file name doesn't really matter, it just needs to be meaningful to you).  Add the following lines to the file:
 
-*Driver file example to come!*
+<span class=disclaimer>Driver file example to come!</span>
 
 See [here](/VMDriverFileFormat) for more on the file format and how to specify events.
 
@@ -142,8 +142,4 @@ $ ./case.submit
 
 Again, you will get a bunch of reporting.  When the simulation completes examine the history variables XXXXX, YYYYY, and WOOD_PRODUCT with your favorite tool (R, Pyton, ncview, NCL, etc.).  You should get data that looks like...
 
-*Data examples to come!*
-
-
-
-
+<span class=disclaimer>Data examples to come!</span>

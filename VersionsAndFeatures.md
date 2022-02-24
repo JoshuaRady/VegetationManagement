@@ -6,7 +6,7 @@ toc: true
 toc_sticky: true
 ---
 
-*The Vegetation Management Module is under active development and this is pre-release documentation.  There may be some changes prior to publication.*
+<span class=disclaimer> The Vegetation Management Module is under active development and this is pre-release documentation.  There may be some changes prior to publication. </span>
 
 ## Vegetation Management Module Versions
 

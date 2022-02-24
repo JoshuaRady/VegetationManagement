@@ -1,6 +1,4 @@
 main:
-#  - title: "Home"
-#    url: /
   - title: "Versions and Features"
     url: /VersionsAndFeatures
   - title: "Installation"

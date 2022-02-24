@@ -1,4 +1,4 @@
-# The Vegetation Management Module
+# The Vegetation Management Module Documentation
 
 This repository contains documentation for the the FATES Vegetation Management Module.
 The Vegetation Management Module (VM) is a research tool that allows the simulation of realistic vegetation management activities within the [Functionally Assembled Terrestrial Ecosystem Simulator (FATES)](https://github.com/NGEET/fates).
