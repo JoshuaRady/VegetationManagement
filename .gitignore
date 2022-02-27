@@ -1,0 +1,7 @@
+# .gitignore
+# OS Files:
+.DS_Store
+
+# Local Jekyll files:
+.jekyll-cache
+_site/
